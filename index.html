@@ -14565,24 +14565,20 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><div align="center"></p>
 <p><h1>Predicting the Winner of League of Legend's World Championship Series</h1></p>
-<h2>Richie Zhang</h2>
+<p><h2>By: Richie Zhang</h2></p>
+<p><p><b>Published December 12th, 2022</b></p></p>
+<p><p><b>Last updated December 16th, 2022</b></p></p>
+<hr>
 </div>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><b>Published December 12th, 2022</b></p>
-<p><b>Last updated December 16th, 2022</b></p>
-</div>
-</div>
-</div>
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><b>Table of Contents:</b></p><ol>
+<p>
+<b>Table of Contents:</b>
+<ol>
 <li>Introduction
 <li>Data Munging
     <ol>
@@ -14592,6 +14588,43 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <li>Data Exploratnion and Analysis
 <li>Conclusion
 </ol>
+</p>
+</div>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><h3><b>1. Introduction:</b> What is League of Legends?</h3></p>
+<p>
+League of Legends (LoL) is a multiplayer online battle arena (MOBA) game developed by Riot Games. Released in October 2009, League of Legends has been around for many years and has millions of players. League of Legends hit peak concurrent players of 8 million and its competitive scene peaked at 44 million concurrent viewers during 2019. 
+</p>
+<p>
+The premise of the League's primary game, Summoner's Rift, is simple: each game consists of two teams of 5 players where players are traditionally assigned a role. There are 5 roles, Top, Jungle, Middle, Bottom and Support, with various characters (champions) to pick from for each of the role. There are currently 161 unique champions which all have unique abilities. After each team picks their champions, players are sent to their respective regions of the map. During a match, champions gain levels by accruing experience points (XP) through killing enemies and minions that spawn in each lane and the jungle. Gold is also gained upon slaying enemies and enemy structures, which allow players to buy items. Items can be acquired to increase champions' strength and are bought in one's own base. Each match is discrete, so levels and items do not transfer between matches. The winner of each game is decided by whichever team breaks the opposing team's base structure (nexus) first. More info found <a href="https://www.leagueoflegends.com/en-us/how-to-play/"> here. </a>
+</p>
+</div>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div style="text-align: center;">
+
+<h4>Summoner's Rift with Regions</h4>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Map_of_MOBA.svg/1280px-Map_of_MOBA.svg.png" width="300" height="300">
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>
+
+
+In this tutorial, our goal is to tidy the in-game data given to us, provide valuable insight into which operators are the most successful in terms of win rate/kill-death ratio, and predict these win/kill-death ratios when a certain character is chosen in different situations. Operators are fundamentally different since each operator has a unique gadget or ability for use in each round. These range from being able to heal teammates to setting up traps around the map. For readers unfamiliar with this game, we hope this analysis will make them interested in trying out Rainbow Six Siege and provide some evidence on which operators are best to pick starting out as a new player. For experienced players, we hope to show interesting unknown statistics and maybe even give them new things to try when they play.
+</p>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14638,13 +14671,13 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <span class="c1">#This data specifies the World Championship Series league for the LoL Worlds 2022 event.</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;league&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;WCS&#39;</span><span class="p">]</span>
 
-<span class="c1">#This data specifies each team&#39;s overall data compiled.</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;position&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;team&#39;</span><span class="p">]</span>
-
 <span class="c1">#This data specifies the completeness of data, dropping the games without properly compiled data.</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;datacompleteness&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;complete&#39;</span><span class="p">]</span>
 
 <span class="c1">#Removing Unnecessary Data</span>
+
+<span class="c1">#This data specifies each team&#39;s overall data compiled.</span>
+<span class="n">team_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;position&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;team&#39;</span><span class="p">]</span>
 
 <span class="c1">#Gives a dataset of the games won and by what team.</span>
 <span class="n">win_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
