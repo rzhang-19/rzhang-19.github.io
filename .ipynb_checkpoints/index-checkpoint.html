@@ -16678,10 +16678,10 @@ In this tutorial, my goal is to tidy the Worlds 2022 data that was compiled by <
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Random Forest Classifier</span>
 <span class="n">rfc</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">max_features</span> <span class="o">=</span> <span class="s1">&#39;sqrt&#39;</span><span class="p">,</span> <span class="n">n_jobs</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 
-<span class="c1">#Trains the Random Forest Classifier with the training set</span>
+<span class="c1">#Trains the decision tree classifier with the training set</span>
 <span class="n">rfc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">xtrain</span><span class="p">,</span> <span class="n">ytrain</span><span class="p">)</span>
 
-<span class="c1">#Predicts the classifications of the Random Forest Classifier based on the test set</span>
+<span class="c1">#Predicts the classifications of the decision tree classifier based on the test set</span>
 <span class="n">ypred</span> <span class="o">=</span> <span class="n">rfc</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">xtest</span><span class="p">)</span>
 
 <span class="c1">#Prints accuracy at classifying test set of teams who won which game</span>
@@ -16833,10 +16833,10 @@ In this tutorial, my goal is to tidy the Worlds 2022 data that was compiled by <
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Random Forest Classifier</span>
 <span class="n">rfc</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">max_features</span> <span class="o">=</span> <span class="s1">&#39;sqrt&#39;</span><span class="p">,</span> <span class="n">n_jobs</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 
-<span class="c1">#Trains the Random Forest Classifier with the training set</span>
+<span class="c1">#Trains the decision tree classifier with the training set</span>
 <span class="n">rfc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">xtrain</span><span class="p">,</span> <span class="n">ytrain</span><span class="p">)</span>
 
-<span class="c1">#Predicts the classifications of the Random Forest Classifier based on the test set</span>
+<span class="c1">#Predicts the classifications of the decision tree classifier based on the test set</span>
 <span class="n">ypred</span> <span class="o">=</span> <span class="n">rfc</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">xtest</span><span class="p">)</span>
 
 <span class="c1">#Prints accuracy at classifying test set of teams who won which game</span>
